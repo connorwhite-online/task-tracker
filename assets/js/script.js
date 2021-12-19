@@ -53,6 +53,10 @@ var createTaskEl = function (taskDataObj) {
 
 };
 
+var completeEditTask = function(taskName, taskType, taskId) {
+  console.log(taskName, taskType, taskId);
+};
+
 var createTaskActions = function(taskId) {
   var actionContainerEl = document.createElement("div");
   actionContainerEl.className = "task-actions";
