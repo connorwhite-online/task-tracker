@@ -10,22 +10,22 @@ var taskFormHandler = function(event) {
   var taskNameInput = document.querySelector("input[name='task-name']").value;
   var taskTypeInput = document.querySelector("select[name='task-type']").value;
 
-  // package up data as an object
-  var taskDataObj = {
+  var isEdit = formEl.hasAttribute("data-task-id");
+  
+  // has data attribute, so get task id and call function to complete edit process
+  if (isEdit) {
+    var taskId = formEl.getAttribute("data-task-id");
+    completeEditTask(taskNameInput, taskTypeInput, taskId);
+  }  
+  // no data attribute, so create object as normal and pass to createTaskEl function
+  else {
+    var taskDataObj = {
       name: taskNameInput,
       type: taskTypeInput
-  };
+    };
 
-  //check if input values are empty strings
-  if (!taskNameInput || !taskTypeInput) {
-    alert("Please complete the task form!");
-    return false;
+    createTaskEl(taskDataObj);
   }
-
-  formEl.reset();
-
-  // send it as an argument to createTaskEl
-  createTaskEl(taskDataObj);
 };
 
 var createTaskEl = function (taskDataObj) {
